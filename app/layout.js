@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { dbConnect } from "@/service/mongo";
 import { Inter, Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -11,7 +12,9 @@ export const metadata = {
   description: "Explore || Learn || Build || Share",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  await dbConnect();
+
   return (
     <html lang="en">
       <body
